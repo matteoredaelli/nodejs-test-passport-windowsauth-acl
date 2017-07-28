@@ -1,0 +1,37 @@
+var passport = require('passport');
+var WindowsStrategy = require('passport-windowsauth');
+
+
+passport.use(new WindowsStrategy({
+  ldap: {
+    url:             'ldap://dmc.group.redaelli.org/DC=group,DC=redaelli,DC=org',
+    base:            'DC=group,DC=redaelli,DC=org',
+    bindDN:          'sa.obipublisher01it@group.redaelli.org',
+    bindCredentials: 'Pirelli2k17'      
+  }, getUserNameFromHeader: function (req) {
+    //in the above apache config we set the x-forwarded-user header.
+      //mod_auth_kerb uses user@domain
+      var u = req.headers['x-forwarded-user'].split('@')[0];
+      req.session.userId = u;
+    return u;
+  }
+}, function(profile, done) {
+    //console.log(profile);
+    //done(undefined, profile.displayNane);
+    done(undefined, profile);
+    //User.findOrCreate({ waId: profile.id },
+    //function (err, user) {
+    //done(err, user);
+}));
+
+
+passport.serializeUser(function(user, done) {
+    console.log('serializeUser: ' + user._json.sAMAccountName);
+    done(null, user._json.sAMAccountName);
+});
+
+passport.deserializeUser(function(user, done) {
+    console.log('deserializeUser: ' + user);
+    done(null, user);
+});
+module.exports = passport;

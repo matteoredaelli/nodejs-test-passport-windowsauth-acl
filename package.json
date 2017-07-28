@@ -1,0 +1,25 @@
+{
+  "name": "nodejs-test-passport-windowsauth",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "acl": "^0.4.10",
+    "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
+    "cookie-session": "^2.0.0-beta.2",
+    "debug": "^2.6.8",
+    "express": "^4.15.3",
+    "express-session": "^1.15.4",
+    "jade": "~1.11.0",
+    "morgan": "^1.8.2",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "passport-windowsauth": "^3.0.0",
+    "serve-favicon": "^2.4.3",
+    "session": "^0.1.0",
+    "simple-express-acl": "^0.2.4"
+  }
+}

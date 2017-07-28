@@ -1,0 +1,11 @@
+var express = require('express');
+var router = express.Router();
+var passport = require('../Passport');
+
+router.get('/express-passport',
+  passport.authenticate('WindowsAuthentication'),
+  function (req, res){
+    res.json(req.user._json.sAMAccountName);
+  });
+
+module.exports = router;
